@@ -11,7 +11,7 @@ public class indexController
     public String goToIndexPage(Model model)
     {
         model.addAttribute("test","5555test");
-        return "/WEB-INF/index.html";
+        return "index.html";
     }
 
 //    @Autowired
