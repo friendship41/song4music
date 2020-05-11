@@ -4,10 +4,10 @@ import com.friendship41.song4music.repository.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, String>
 {
-    public List<Member> findBymMemberId(String mMemberId);
+    public Optional<Member> findById(String mMemberId);
 }

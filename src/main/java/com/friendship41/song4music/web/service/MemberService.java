@@ -7,4 +7,7 @@ import java.util.List;
 public interface MemberService
 {
     public List<Member> getMemberList();
+    public Member getMemberById(String mMemberId);
+    public Member save(Member member);
+    public void updateTokenById(String mMemberId, Member member);
 }
