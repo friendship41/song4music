@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-@Service("MemberService")
+@Service("WebMemberService")
 public class MemberServiceImpl implements MemberService
 {
     @Autowired
@@ -21,5 +22,49 @@ public class MemberServiceImpl implements MemberService
         List<Member> memberList = new ArrayList<>();
         memberRepository.findAll().forEach(e -> memberList.add(e));
         return memberList;
+    }
+
+    @Override
+    public Member getMemberById(String mMemberId)
+    {
+        Optional<Member> member = null;
+        try
+        {
+            member = memberRepository.findById(mMemberId);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+        return member.orElse(null);
+    }
+
+    @Override
+    public Member save(Member member)
+    {
+        memberRepository.save(member);
+        return member;
+    }
+
+    @Override
+    public void updateTokenById(String mMemberId, Member member)
+    {
+        Optional<Member> e = null;
+        try
+        {
+            e = memberRepository.findById(mMemberId);
+        }
+        catch (Exception exception)
+        {
+            exception.printStackTrace();
+            return;
+        }
+
+        if(e.isPresent()){
+            e.get().setMMemberAccessTok(member.getMMemberAccessTok());
+            e.get().setMMemberRefreashTok(member.getMMemberRefreashTok());
+        }
+        memberRepository.save(e.get());
     }
 }
