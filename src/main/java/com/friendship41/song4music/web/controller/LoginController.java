@@ -39,7 +39,7 @@ public class LoginController
     {
         Member member = kakaoLoginService.login(code);
         session.setAttribute("member", member);
-        return "index.html";
+        return "redirect:/";
     }
 
 

@@ -16,7 +16,11 @@ public class LogInterceptor extends HandlerInterceptorAdapter
     {
         log.info("=============================== START ===============================");
         log.info("req: "+request.getRequestURI());
-        log.info("params: "+request.getQueryString());
+        String params = request.getQueryString();
+        if(params != null)
+        {
+            log.info("params: " + params);
+        }
         return super.preHandle(request, response, handler);
     }
 
