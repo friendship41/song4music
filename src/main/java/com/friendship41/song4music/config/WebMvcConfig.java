@@ -16,6 +16,7 @@ public class WebMvcConfig implements WebMvcConfigurer
                 .addPathPatterns("/*")
                 .excludePathPatterns("/test/**/")
                 .excludePathPatterns("/login")
+                .excludePathPatterns("/kakao_oauth")
                 .excludePathPatterns("/error");
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/*")

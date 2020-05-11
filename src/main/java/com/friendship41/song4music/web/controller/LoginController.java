@@ -1,6 +1,7 @@
 package com.friendship41.song4music.web.controller;
 
-import lombok.extern.slf4j.Slf4j;
+import com.friendship41.song4music.web.service.LoginService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,12 +11,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class LoginController
 {
+    @Qualifier("KakaoLoginService")
+    private LoginService kakaoLoginService;
+
     @Value("${app_key}")
     private String app_key;
-
     @Value("${redirect_uri}")
     private String redirect_uri;
-
     @Value("${response_type}")
     private String response_type;
 
@@ -28,9 +30,20 @@ public class LoginController
     }
 
     @RequestMapping(value = "/kakao_oauth")
-    public String kakaoAuth(@RequestParam("code")String code)
+    public String kakaoAuth(@RequestParam(value = "code")String code)
     {
-        System.out.println(code);
+        kakaoLoginService.login(code);
         return "index.html";
     }
+
+
+//    @Qualifier("WebMemberService")
+//    private MemberService memberService;
+//
+//    @RequestMapping(value = "/member/")
+//    public ResponseEntity<List<Member>> goToIndexPage()
+//    {
+//        List<Member> member = memberService.getMemberList();
+//        return new ResponseEntity<List<Member>>(member, HttpStatus.OK);
+//    }
 }

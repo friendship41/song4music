@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("MemberService")
+@Service("WebMemberService")
 public class MemberServiceImpl implements MemberService
 {
     @Autowired

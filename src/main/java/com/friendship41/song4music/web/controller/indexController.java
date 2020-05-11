@@ -14,13 +14,5 @@ public class indexController
         return "index.html";
     }
 
-//    @Autowired
-//    private MemberService memberService;
-//
-//    @RequestMapping(value = "/member/{id}")
-//    public ResponseEntity<List<MusiclistMember>> goToIndexPage(@PathVariable("id") String mMemberId)
-//    {
-//        List<MusiclistMember> member = memberService.getMemberList();
-//        return new ResponseEntity<List<MusiclistMember>>(member, HttpStatus.OK);
-//    }
+
 }
