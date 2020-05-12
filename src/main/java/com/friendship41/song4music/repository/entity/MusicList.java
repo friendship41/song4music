@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
@@ -24,8 +25,9 @@ public class MusicList
     private Long mListSeq;
 
     private String mMemberId;
-    private Long mMusicSeq;
-    private String mListRecommendation;
+    private Long mListRecommendation;
     private Long mListReadcount;
-    private Long mListComment;
+    private String mListComment;
+    private Date mListWritedate;
+    private String mListName;
 }

@@ -28,4 +28,5 @@ public class Music
     private String mMusicArtist;
     private Long mSortSeq;
     private String mMusicComment;
+    private Long mListSeq;
 }
