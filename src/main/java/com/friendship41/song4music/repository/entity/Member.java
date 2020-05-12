@@ -7,12 +7,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity(name = "musiclistMember")
+@Entity
+@Table(name = "MUSICLIST_MEMBER")
 public class Member
 {
     @Id
