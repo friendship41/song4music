@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service("WebMusicListService")
 public class MusicListServiceImpl implements MusicListService
 {
@@ -23,6 +25,9 @@ public class MusicListServiceImpl implements MusicListService
     @Override
     public MusicList addMusicList(MusicList musicList)
     {
+        musicList.setMListReadcount(0L);
+        musicList.setMListReadcount(0L);
+        musicList.setMListWritedate(new Date());
         return musicListRepository.save(musicList);
     }
 }

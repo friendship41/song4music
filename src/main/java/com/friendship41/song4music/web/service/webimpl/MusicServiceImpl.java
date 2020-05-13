@@ -1,7 +1,9 @@
 package com.friendship41.song4music.web.service.webimpl;
 
 import com.friendship41.song4music.repository.MusicRepository;
+import com.friendship41.song4music.repository.MusicSortRepository;
 import com.friendship41.song4music.repository.entity.Music;
+import com.friendship41.song4music.repository.entity.MusicSort;
 import com.friendship41.song4music.web.service.MusicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ public class MusicServiceImpl implements MusicService
 {
     @Autowired
     private MusicRepository musicRepository;
+    @Autowired
+    private MusicSortRepository musicSortRepository;
 
     @Override
     public List<Music> getMusics(Long mListSeq)
@@ -25,5 +29,11 @@ public class MusicServiceImpl implements MusicService
     public Music addMusicToList(Music music)
     {
         return musicRepository.save(music);
+    }
+
+    @Override
+    public List<MusicSort> getAllMusicSort()
+    {
+        return new ArrayList<>(musicSortRepository.findAll());
     }
 }

@@ -27,8 +27,8 @@
                 <p>당신의 18번곡은 무엇인가요?</p>
             </header>
 
-            <!-- TODO : 버튼 누르면 리스트 추가하는 모달-->
-            <a href="#" class="button primary icon solid fa-folder-plus">New</a>
+            <button class="primary icon solid fa-folder-plus"
+                    data-toggle="modal" data-target="#newButtonModal">New</button>
             <br/><br/>
 
             <div class="table-wrapper">
@@ -86,6 +86,50 @@
 
     <th:block th:replace="fragments/copyright"></th:block>
 
+
+</div>
+
+<!-- newMusicModal -->
+<div class="modal fade" id="newButtonModal" tabindex="-1" role="dialog"
+     aria-labelledby="newButtonModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newButtonModalLabel">Modal title</h5>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/musics">
+                    <div class="row gtr-uniform">
+                        <!--                            <div class="col-6 col-12-xsmall">-->
+                        <!--                                <input type="text" name="mMusicArtist" placeholder="가수" />-->
+                        <!--                            </div>-->
+                        <div class="col-6 col-12-xsmall">
+                            <input type="text" name="mListName" value="" placeholder="Name" />
+                        </div>
+                        <!-- Break -->
+                        <!--                            <div class="col-12">-->
+                        <!--                                <select name="mSortSeq" id="mSortSeq">-->
+                        <!--                                    <th:block th:each="musicSort : ${musicSortList}">-->
+                        <!--                                        <option th:value="${musicSort.mSortSeq}" th:text="${musicSort.mSortName}"></option>-->
+                        <!--                                    </th:block>-->
+                        <!--                                </select>-->
+                        <!--                            </div>-->
+                        <!-- Break -->
+                        <div class="col-12">
+                            <textarea name="mListComment" placeholder="코멘트를 남겨주세요" rows="6"></textarea>
+                        </div>
+                        <!-- Break -->
+                        <div class="col-12">
+                            <ul class="actions">
+                                <li><input type="submit" value="Add MusicList" class="primary" /></li>
+                                <li><input type="reset" value="Close" data-dismiss="modal" /></li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <th:block th:replace="fragments/scripts"></th:block>

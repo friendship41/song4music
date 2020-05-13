@@ -4,6 +4,7 @@ import com.friendship41.song4music.repository.entity.Member;
 import com.friendship41.song4music.repository.entity.MusicList;
 import com.friendship41.song4music.web.data.BlockedPage;
 import com.friendship41.song4music.web.service.MusicListService;
+import com.friendship41.song4music.web.service.MusicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
@@ -22,6 +23,9 @@ public class indexController
     @Autowired
     @Qualifier("WebMusicListService")
     private MusicListService webMusicListService;
+    @Autowired
+    @Qualifier("WebMusicService")
+    private MusicService webMusicService;
 
     @RequestMapping(value = "/")
     public String goToIndexPage(@PageableDefault(sort = "mListSeq", direction = Sort.Direction.DESC, size = 10) Pageable page, HttpSession session, Model model)
@@ -30,6 +34,7 @@ public class indexController
         Page<MusicList> musicListPage = webMusicListService.getMusicList(member.getMMemberId(), page);
         BlockedPage blockedPage = new BlockedPage(musicListPage);
         model.addAttribute("musicPage", blockedPage);
+        model.addAttribute("musicSortList", webMusicService.getAllMusicSort());
         return "index.html";
     }
 }

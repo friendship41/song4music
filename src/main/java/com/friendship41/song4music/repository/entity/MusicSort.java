@@ -3,6 +3,7 @@ package com.friendship41.song4music.repository.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@ToString
 @Table(name = "MUSICLIST_SORT")
 @SequenceGenerator(
         name = "M_SORT_SEQUENCE_GEN",
