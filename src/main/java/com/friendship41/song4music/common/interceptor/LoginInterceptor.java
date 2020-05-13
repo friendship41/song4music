@@ -1,13 +1,11 @@
-package com.friendship41.song4music.config.interceptor;
+package com.friendship41.song4music.common.interceptor;
 
 import com.friendship41.song4music.repository.entity.Member;
-import org.slf4j.MDC;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.UUID;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter
 {

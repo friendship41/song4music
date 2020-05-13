@@ -41,15 +41,4 @@ public class LoginController
         session.setAttribute("member", member);
         return "redirect:/";
     }
-
-
-//    @Qualifier("WebMemberService")
-//    private MemberService memberService;
-//
-//    @RequestMapping(value = "/member/")
-//    public ResponseEntity<List<Member>> goToIndexPage()
-//    {
-//        List<Member> member = memberService.getMemberList();
-//        return new ResponseEntity<List<Member>>(member, HttpStatus.OK);
-//    }
 }

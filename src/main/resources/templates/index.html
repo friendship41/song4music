@@ -27,6 +27,7 @@
                 <p>당신의 18번곡은 무엇인가요?</p>
             </header>
 
+            <!-- TODO : 버튼 누르면 리스트 추가하는 모달-->
             <a href="#" class="button primary icon solid fa-folder-plus">New</a>
             <br/><br/>
 
@@ -39,10 +40,13 @@
                         <th>Comment</th>
                     </tr>
                     </thead>
-                    <tbody th:each="musicList : ${musicListPage.content}">
+                    <!--/*@thymesVar id="musicPage" type="com.friendship41.song4music.web.data.BlockedPage"*/-->
+                    <tbody th:each="musicList : ${musicPage.getPage().getContent()}">
                     <tr>
                         <td th:text="${musicList.mListSeq}"></td>
-                        <td th:text="${musicList.mListName}"></td>
+                        <!-- TODO : 누르면 모달로 만들어야함 -->
+                        <td><a th:href="@{/musics(mListSeq=${musicList.mListSeq})}"
+                               th:text="${musicList.mListName}"></a></td>
                         <td th:text="${musicList.mListComment}"></td>
                     </tr>
                     </tbody>
@@ -58,12 +62,22 @@
             <!-- Footer -->
             <footer>
                 <div class="pagination">
-                    <a th:href="@{/(page=${prevPage})}" class="previous" th:if="${musicListPage.first.equals(false)}">Prev</a>
-                    <th:block th:each="num : ${#numbers.sequence(startBlock,endBlock)}">
-                        <a th:href="@{/(page=${num})}" class="page active" th:if="${num.equals(nowPage)}" th:text="${num+1}"></a>
-                        <a th:href="@{/(page=${num})}" class="page" th:unless="${num.equals(nowPage)}" th:text="${num+1}"></a>
+                    <!--/*@thymesVar id="musicPage" type="com.friendship41.song4music.web.data.BlockedPage"*/-->
+                    <a th:href="@{/(page=${musicPage.prevNum})}" class="previous"
+                       th:if="${musicPage.prevNum != -1}">Prev</a>
+                    <th:block
+                            th:each="num : ${#numbers.sequence(musicPage.getStartBlock(),musicPage.getEndBlock())}">
+                        <th:block th:with="reqNum=${num}-1">
+                            <a th:href="@{/(page=${reqNum})}" class="page active"
+                               th:if="${num.equals(musicPage.getPage().getNumber()+1)}"
+                               th:text="${num}"></a>
+                            <a th:href="@{/(page=${reqNum})}" class="page"
+                               th:unless="${num.equals(musicPage.getPage().getNumber()+1)}"
+                               th:text="${num}"></a>
+                        </th:block>
                     </th:block>
-                    <a th:href="@{/(page=${nextPage})}" class="next" th:if="${musicListPage.last.equals(false)}">Next</a>
+                    <a th:href="@{/(page=${musicPage.nextNum})}" class="next"
+                       th:if="${musicPage.nextNum != -1}">Next</a>
                 </div>
             </footer>
         </section>

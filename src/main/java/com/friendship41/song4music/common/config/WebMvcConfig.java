@@ -1,7 +1,7 @@
-package com.friendship41.song4music.config;
+package com.friendship41.song4music.common.config;
 
-import com.friendship41.song4music.config.interceptor.LogInterceptor;
-import com.friendship41.song4music.config.interceptor.LoginInterceptor;
+import com.friendship41.song4music.common.interceptor.LogInterceptor;
+import com.friendship41.song4music.common.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
