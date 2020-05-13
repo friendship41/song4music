@@ -20,4 +20,10 @@ public class MusicServiceImpl implements MusicService
     {
         return new ArrayList<>(musicRepository.findBymListSeq(mListSeq));
     }
+
+    @Override
+    public Music addMusicToList(Music music)
+    {
+        return musicRepository.save(music);
+    }
 }

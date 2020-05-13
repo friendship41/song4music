@@ -7,4 +7,5 @@ import java.util.List;
 public interface MusicService
 {
     public List<Music> getMusics(Long mListSeq);
+    public Music addMusicToList(Music music);
 }
