@@ -19,4 +19,10 @@ public class MusicListServiceImpl implements MusicListService
     {
         return musicListRepository.findBymMemberId(MMemberId, pageable);
     }
+
+    @Override
+    public MusicList addMusicList(MusicList musicList)
+    {
+        return musicListRepository.save(musicList);
+    }
 }

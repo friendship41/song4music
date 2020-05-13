@@ -7,4 +7,5 @@ import org.springframework.data.domain.Pageable;
 public interface MusicListService
 {
     public Page<MusicList> getMusicList(String MMemberId, Pageable pageable);
+    public MusicList addMusicList(MusicList musicList);
 }
