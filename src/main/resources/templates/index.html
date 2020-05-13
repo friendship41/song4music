@@ -43,7 +43,9 @@
                     <tbody th:each="musicList : ${musicPage.getPage().getContent()}">
                     <tr>
                         <td th:text="${musicList.mListSeq}"></td>
-                        <td th:text="${musicList.mListName}"></td>
+                        <!-- TODO : 누르면 모달로 만들어야함 -->
+                        <td><a th:href="@{/musics(mListSeq=${musicList.mListSeq})}"
+                               th:text="${musicList.mListName}"></a></td>
                         <td th:text="${musicList.mListComment}"></td>
                     </tr>
                     </tbody>

@@ -19,25 +19,13 @@ public class MemberServiceImpl implements MemberService
     @Override
     public List<Member> getMemberList()
     {
-        List<Member> memberList = new ArrayList<>();
-        memberRepository.findAll().forEach(e -> memberList.add(e));
-        return memberList;
+        return new ArrayList<>(memberRepository.findAll());
     }
 
     @Override
     public Member getMemberById(String mMemberId)
     {
-        Optional<Member> member = null;
-        try
-        {
-            member = memberRepository.findById(mMemberId);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            return null;
-        }
-        return member.orElse(null);
+        return memberRepository.findById(mMemberId).orElse(null);
     }
 
     @Override
@@ -50,21 +38,12 @@ public class MemberServiceImpl implements MemberService
     @Override
     public void updateTokenById(String mMemberId, Member member)
     {
-        Optional<Member> e = null;
-        try
-        {
-            e = memberRepository.findById(mMemberId);
-        }
-        catch (Exception exception)
-        {
-            exception.printStackTrace();
-            return;
-        }
+        Optional<Member> e = memberRepository.findById(mMemberId);
 
         if(e.isPresent()){
             e.get().setMMemberAccessTok(member.getMMemberAccessTok());
             e.get().setMMemberRefreashTok(member.getMMemberRefreashTok());
+            memberRepository.save(e.get());
         }
-        memberRepository.save(e.get());
     }
 }

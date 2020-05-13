@@ -30,7 +30,6 @@ public class indexController
         Page<MusicList> musicListPage = webMusicListService.getMusicList(member.getMMemberId(), page);
         BlockedPage blockedPage = new BlockedPage(musicListPage);
         model.addAttribute("musicPage", blockedPage);
-        System.out.println(blockedPage);
         return "index.html";
     }
 }
