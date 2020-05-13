@@ -25,17 +25,16 @@ public class MusicController
     }
 
     @PostMapping(value = "/music")
-    public String addMusic(Music music)
+    public Music addMusic(Music music)
     {
         try
         {
-            webMusicService.addMusicToList(music);
-            return "{\"responseCode\":\"1\",\"result\":\"success\"}";
+            return webMusicService.addMusicToList(music);
         }
         catch (Exception e)
         {
             e.printStackTrace();
-            return "{\"responseCode\":\"2\",\"result\":\"fail\"}";
+            return null;
         }
     }
 
