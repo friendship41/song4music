@@ -28,7 +28,7 @@
             </header>
 
             <button class="primary icon solid fa-folder-plus"
-                    data-toggle="modal" data-target="#newButtonModal">New</button>
+                    data-toggle="modal" data-target="#NewButtonModal">New</button>
             <br/><br/>
 
             <div class="table-wrapper">
@@ -44,9 +44,9 @@
                     <tbody th:each="musicList : ${musicPage.getPage().getContent()}">
                     <tr>
                         <td th:text="${musicList.mListSeq}"></td>
-                        <!-- TODO : 누르면 모달로 만들어야함 -->
-                        <td><a th:href="@{/musics(mListSeq=${musicList.mListSeq})}"
-                               th:text="${musicList.mListName}"></a></td>
+                        <td><a th:text="${musicList.mListName}"
+                               data-toggle="modal" data-target="#MusicListModal"
+                               th:onclick="|javascript:clickMusicList('${musicList.mListSeq}')|"></a></td>
                         <td th:text="${musicList.mListComment}"></td>
                     </tr>
                     </tbody>
@@ -95,26 +95,14 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newButtonModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="newButtonModalLabel">New SongList</h5>
             </div>
             <div class="modal-body">
                 <form method="post" action="/musics">
                     <div class="row gtr-uniform">
-                        <!--                            <div class="col-6 col-12-xsmall">-->
-                        <!--                                <input type="text" name="mMusicArtist" placeholder="가수" />-->
-                        <!--                            </div>-->
                         <div class="col-6 col-12-xsmall">
-                            <input type="text" name="mListName" value="" placeholder="Name" />
+                            <input type="text" name="mListName" value="" placeholder="Name" required/>
                         </div>
-                        <!-- Break -->
-                        <!--                            <div class="col-12">-->
-                        <!--                                <select name="mSortSeq" id="mSortSeq">-->
-                        <!--                                    <th:block th:each="musicSort : ${musicSortList}">-->
-                        <!--                                        <option th:value="${musicSort.mSortSeq}" th:text="${musicSort.mSortName}"></option>-->
-                        <!--                                    </th:block>-->
-                        <!--                                </select>-->
-                        <!--                            </div>-->
-                        <!-- Break -->
                         <div class="col-12">
                             <textarea name="mListComment" placeholder="코멘트를 남겨주세요" rows="6"></textarea>
                         </div>
@@ -132,7 +120,61 @@
     </div>
 </div>
 
+<!-- MusicListModal -->
+<div class="modal fade" id="MusicListModal" tabindex="-1" role="dialog"
+     aria-labelledby="MusicListModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="MusicListModalLabel">Modal title</h5>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/musics">
+                    <div class="row gtr-uniform">
+                        <div class="col-6 col-12-xsmall">
+                            <input type="text" name="mMusicArtist" placeholder="Artist" required/>
+                        </div>
+                        <div class="col-6 col-12-xsmall">
+                            <input type="text" name="mListName" value="" placeholder="Name" />
+                        </div>
+                        <!-- Break -->
+                        <div class="col-12">
+                            <select name="mSortSeq" id="mSortSeq">
+                                <th:block th:each="musicSort : ${musicSortList}">
+                                    <option th:value="${musicSort.mSortSeq}" th:text="${musicSort.mSortName}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <!-- Break -->
+                        <div class="col-12">
+                            <textarea name="mListComment" placeholder="코멘트를 남겨주세요" rows="6"></textarea>
+                        </div>
+                        <!-- Break -->
+                        <div class="col-12">
+                            <ul class="actions">
+                                <li><input type="submit" value="Add MusicList" class="primary" /></li>
+                                <li><input type="reset" value="Close" data-dismiss="modal" /></li>
+                            </ul>
+                        </div>
+                        <div class="col-12">
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <th:block th:replace="fragments/scripts"></th:block>
+
+<!-- TODO : ajax로 리스트내 음악들 불러와서 세팅하는거 -->
+<script>
+    function clickMusicList(seq) {
+        $.ajax(
+        )
+    }
+</script>
 
 </body>
 </html>
